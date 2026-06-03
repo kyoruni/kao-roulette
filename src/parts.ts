@@ -55,8 +55,19 @@ export const MOUTHS: readonly Part[] = [
   { name: 'イーッ', svg: iittoSvg },
 ]
 
+export const OPTIONS: readonly string[] = [
+  'ピース',
+  '汗',
+  '涙',
+  '赤面',
+  'パー',
+  'グー',
+  '口に手を当てる',
+]
+
 export type Face = {
   eyebrow: Part
   eye: Part
   mouth: Part
+  option?: string
 }
