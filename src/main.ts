@@ -9,29 +9,38 @@ app.innerHTML = `
   <div class="face">
     <div class="slot">
       <span class="label">眉</span>
-      <span class="value" id="value-eyebrow">？</span>
+      <span class="name" id="name-eyebrow">？</span>
+      <span class="svg" id="svg-eyebrow"></span>
     </div>
     <div class="slot">
       <span class="label">目</span>
-      <span class="value" id="value-eye">？</span>
+      <span class="name" id="name-eye">？</span>
+      <span class="svg" id="svg-eye"></span>
     </div>
     <div class="slot">
       <span class="label">口</span>
-      <span class="value" id="value-mouth">？</span>
+      <span class="name" id="name-mouth">？</span>
+      <span class="svg" id="svg-mouth"></span>
     </div>
   </div>
   <button id="spin-button" type="button">回す</button>
 </main>
 `
 
-const eyebrowEl = document.querySelector<HTMLSpanElement>('#value-eyebrow')!
-const eyeEl = document.querySelector<HTMLSpanElement>('#value-eye')!
-const mouthEl = document.querySelector<HTMLSpanElement>('#value-mouth')!
+const eyebrowName = document.querySelector<HTMLSpanElement>('#name-eyebrow')!
+const eyeName = document.querySelector<HTMLSpanElement>('#name-eye')!
+const mouthName = document.querySelector<HTMLSpanElement>('#name-mouth')!
+const eyebrowSvg = document.querySelector<HTMLSpanElement>('#svg-eyebrow')!
+const eyeSvg = document.querySelector<HTMLSpanElement>('#svg-eye')!
+const mouthSvg = document.querySelector<HTMLSpanElement>('#svg-mouth')!
 const button = document.querySelector<HTMLButtonElement>('#spin-button')!
 
 button.addEventListener('click', () => {
   const face = spin()
-  eyebrowEl.textContent = face.eyebrow
-  eyeEl.textContent = face.eye
-  mouthEl.textContent = face.mouth
+  eyebrowName.textContent = face.eyebrow.name
+  eyeName.textContent = face.eye.name
+  mouthName.textContent = face.mouth.name
+  eyebrowSvg.innerHTML = face.eyebrow.svg
+  eyeSvg.innerHTML = face.eye.svg
+  mouthSvg.innerHTML = face.mouth.svg
 })

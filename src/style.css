@@ -62,9 +62,10 @@ h1 {
 }
 
 .slot {
-  display: flex;
+  display: grid;
+  grid-template-columns: 40px 1fr 80px;
   align-items: center;
-  justify-content: space-between;
+  gap: 1rem;
   padding: 1rem 1.5rem;
   border: 2px solid var(--slot-border);
   border-radius: 12px;
@@ -74,11 +75,25 @@ h1 {
 .label {
   font-size: 0.9rem;
   color: var(--text-muted);
+  text-align: left;
 }
 
-.value {
-  font-size: 1.4rem;
+.name {
+  font-size: 1.3rem;
   font-weight: 600;
+  text-align: left;
+}
+
+.svg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text);
+}
+
+.svg svg {
+  width: 80px;
+  height: 40px;
 }
 
 button {
