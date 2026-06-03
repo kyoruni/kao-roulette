@@ -1,5 +1,6 @@
 import './style.css'
-import { spin } from './gacha'
+import { spin, pickRandom } from './gacha'
+import { EYES, EYEBROWS, MOUTHS, type Part } from './parts'
 
 const app = document.querySelector<HTMLDivElement>('#app')!
 
@@ -35,12 +36,29 @@ const eyeSvg = document.querySelector<HTMLSpanElement>('#svg-eye')!
 const mouthSvg = document.querySelector<HTMLSpanElement>('#svg-mouth')!
 const button = document.querySelector<HTMLButtonElement>('#spin-button')!
 
+function renderSlot(nameEl: HTMLElement, svgEl: HTMLElement, part: Part) {
+  nameEl.textContent = part.name
+  svgEl.innerHTML = part.svg
+}
+
+const SHUFFLE_DURATION_MS = 1200
+const SHUFFLE_INTERVAL_MS = 70
+
 button.addEventListener('click', () => {
-  const face = spin()
-  eyebrowName.textContent = face.eyebrow.name
-  eyeName.textContent = face.eye.name
-  mouthName.textContent = face.mouth.name
-  eyebrowSvg.innerHTML = face.eyebrow.svg
-  eyeSvg.innerHTML = face.eye.svg
-  mouthSvg.innerHTML = face.mouth.svg
+  button.disabled = true
+
+  const intervalId = window.setInterval(() => {
+    renderSlot(eyebrowName, eyebrowSvg, pickRandom(EYEBROWS))
+    renderSlot(eyeName, eyeSvg, pickRandom(EYES))
+    renderSlot(mouthName, mouthSvg, pickRandom(MOUTHS))
+  }, SHUFFLE_INTERVAL_MS)
+
+  window.setTimeout(() => {
+    clearInterval(intervalId)
+    const face = spin()
+    renderSlot(eyebrowName, eyebrowSvg, face.eyebrow)
+    renderSlot(eyeName, eyeSvg, face.eye)
+    renderSlot(mouthName, mouthSvg, face.mouth)
+    button.disabled = false
+  }, SHUFFLE_DURATION_MS)
 })
