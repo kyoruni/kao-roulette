@@ -1,4 +1,5 @@
 import futsumeSvg from './assets/eyes/futsume.svg?raw'
+import mihirakiSvg from './assets/eyes/mihiraki.svg?raw'
 import jitomeSvg from './assets/eyes/jitome.svg?raw'
 import kirakiraSvg from './assets/eyes/kirakira.svg?raw'
 import nikkoriSvg from './assets/eyes/nikkori.svg?raw'
@@ -28,6 +29,7 @@ export type Part = {
 
 export const EYES: readonly Part[] = [
   { name: '普通目', svg: futsumeSvg },
+  { name: '見開き目', svg: mihirakiSvg },
   { name: 'ジト目', svg: jitomeSvg },
   { name: 'キラキラ目', svg: kirakiraSvg },
   { name: 'にっこり目', svg: nikkoriSvg },
